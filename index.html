@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIVIAA Test Website</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#0b4a88;
+  --accent2:#0f6fb2;
+  --bg:#f4f7fb;
+  --card:#fff;
+  --muted:#6b7280;
+  --radius:14px;
+  --shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Poppins;background:var(--bg);color:#0a1220;line-height:1.45}
+header{position:sticky;top:0;z-index:1000;background:#ffffffd8;backdrop-filter:blur(8px);border-bottom:1px solid #dce3ee;}
+.container{width:92%;max-width:1100px;margin:auto}
+nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+nav .menu a{text-decoration:none;color:var(--muted);font-weight:600;margin:0 10px;padding:8px 10px;border-radius:8px;transition:.2s}
+nav .menu a:hover{background:#e9f2ff;color:var(--accent)}
+.hamb{display:none;flex-direction:column;gap:4px;cursor:pointer}
+.hamb span{width:24px;height:3px;background:var(--accent);border-radius:4px}
+#mobileMenu{position:fixed;top:0;right:-100%;width:70%;max-width:280px;height:100%;background:#fff;transition:.3s;padding:20px;z-index:1200;box-shadow:var(--shadow)}
+#mobileMenu a{display:block;padding:12px 6px;border-radius:10px;color:var(--accent);text-decoration:none;font-weight:600}
+#mobileMenu.open{right:0}
+
+/* hero */
+.hero{padding:60px 0;display:flex;flex-direction:column;gap:20px;text-align:center}
+.hero h1{font-size:2rem;font-weight:700;color:#06254c}
+.hero p{color:var(--muted);max-width:60%;margin:auto}
+.hero .btns{display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.btn{padding:12px 20px;border-radius:12px;font-weight:700;text-decoration:none;display:inline-block;transition:.25s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px)}
+.btn-outline{border:2px solid var(--accent);color:var(--accent)}
+.btn-outline:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
+.stats{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.stat{background:var(--card);padding:14px 20px;border-radius:var(--radius);box-shadow:var(--shadow);text-align:center}
+.stat strong{font-size:1.3rem;color:var(--accent)}
+
+/* cards */
+.section-title{text-align:center;font-size:1.5rem;font-weight:700;margin-bottom:20px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:var(--shadow);transition:.25s}
+.card:hover{transform:translateY(-4px)}
+.card .icon{width:60px;height:60px;background:#eaf3ff;color:var(--accent);display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:700;font-size:1.3rem;margin-bottom:10px}
+.card-btn{margin-top:12px;display:block;text-align:center;padding:10px 16px;background:var(--accent);color:#fff;border-radius:10px;text-decoration:none;font-weight:600}
+.card-btn:hover{background:var(--accent2)}
+
+/* video */
+.video{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.video iframe{width:100%;height:220px;border:0;border-radius:12px}
+
+/* reviews */
+.reviews{margin-top:30px}
+.review-box{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.rating-display{text-align:center;margin-bottom:16px}
+.rating-display strong{font-size:2.2rem;color:var(--accent)}
+.stars{font-size:1.3rem;color:#ffb400;margin-top:-5px;cursor:pointer}
+.rating-bar{width:100%;height:12px;background:#e7edfa;border-radius:20px;margin-top:10px;overflow:hidden}
+.rating-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%}
+.comment-item{background:#f4f6fc;padding:14px;border-radius:12px;margin-top:10px;opacity:0;transform:translateY(10px);transition:.4s}
+.comment-item.show{opacity:1;transform:translateY(0)}
+
+/* quick menu */
+.quick-menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+.quick-btn{background:var(--accent);color:white;padding:18px;border-radius:14px;text-align:center;text-decoration:none;font-weight:600;box-shadow:var(--shadow);transition:.25s}
+.quick-btn:hover{background:var(--accent2);transform:translateY(-3px)}
+
+/* form komentar */
+form{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:var(--shadow);margin-top:30px}
+form input,form textarea,form select{
+  width:100%;padding:12px;margin-top:8px;border-radius:10px;border:1px solid #cbd3e1;font-family:Poppins;
+}
+form button{margin-top:14px;width:100%;padding:12px;background:var(--accent);color:white;font-weight:700;border:0;border-radius:10px;cursor:pointer}
+form button:hover{background:var(--accent2)}
+.toast{position:fixed;bottom:20px;right:20px;background:#0b4a88;color:#fff;padding:14px 20px;border-radius:10px;opacity:0;transition:.3s}
+.toast.show{opacity:1}
+
+footer{text-align:center;margin:40px 0;color:var(--muted);font-size:.9rem}
+
+/* mobile */
+@media(max-width:780px){
+  .hamb{display:flex}
+  nav .menu{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo" style="font-weight:700;color:var(--accent);text-decoration:none;">LIVIAA Test Website</a>
+      <div class="menu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#ai">Chat AI</a>
+        <a href="#script">Script</a>
+        <a href="#tutorial">Tutorial</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="hamb" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </nav>
+  </div>
+</header>
+
+<div id="mobileMenu">
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#ai" onclick="toggleMenu()">Chat AI</a>
+  <a href="#script" onclick="toggleMenu()">Script</a>
+  <a href="#tutorial" onclick="toggleMenu()">Tutorial</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<section id="home" class="container hero">
+  <h1>Selamat Datang di LIVIAA Test Website</h1>
+  <p>Platform demo super ringan dengan fitur panel, script, tutorial, dan Chat AI WhatsApp.</p>
+  <div class="btns">
+    <a href="https://wa.me/6280000000000" class="btn btn-primary">Get Script</a>
+    <a href="https://wa.me/6280000000000" class="btn btn-outline">Buy Panel</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><strong>350+</strong><small>Users</small></div>
+    <div class="stat"><strong>120</strong><small>Scripts</small></div>
+    <div class="stat"><strong>4.9k</strong><small>Likes</small></div>
+    <div class="stat"><strong>4.8</strong><small>Rating</small></div>
+  </div>
+</section>
+
+<section class="container" id="layanan">
+  <h2 class="section-title">Layanan</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="icon">🛒</div>
+      <h3>Buy Panel</h3>
+      <p>Panel murah kualitas premium, cocok untuk reseller.</p>
+      <a href="https://wa.me/6280000000000" class="card-btn">Beli Sekarang</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">📦</div>
+      <h3>All Produk</h3>
+      <p>Paket lengkap: hosting, panel, bot, API, dan lainnya.</p>
+      <a href="https://wa.me/6280000000000" class="card-btn">Hubungi Admin</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">🧾</div>
+      <h3>Get Script</h3>
+      <p>Script public & premium siap pakai untuk bisnis Anda.</p>
+      <a href="https://wa.me/6280000000000" class="card-btn">Dapatkan Script</a>
+    </div>
+  </div>
+</section>
+
+<section class="container video" id="tutorial">
+  <h2 class="section-title">Video Terbaru</h2>
+  <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U"></iframe>
+</section>
+
+<section class="container reviews" id="reviews">
+  <h2 class="section-title">Ulasan Pengguna</h2>
+
+  <div class="review-box">
+    <div class="rating-display">
+      <strong id="ratingValue">0.0</strong>/5
+      <div class="stars" onclick="changeRating(event)">
+        ★★★★★
+      </div>
+    </div>
+
+    <div class="rating-bar">
+      <div id="ratingFill" class="rating-fill"></div>
+    </div>
+
+    <div id="comments"></div>
+  </div>
+</section>
+
+<section class="container">
+  <h2 class="section-title">Menu Cepat</h2>
+  <div class="quick-menu">
+    <a href="https://wa.me/6280000000000" class="quick-btn">Chat AI</a>
+    <a href="https://wa.me/6280000000000" class="quick-btn">Script Free</a>
+    <a href="https://youtube.com" class="quick-btn">Tutorial</a>
+    <a href="https://wa.me/6280000000000" class="quick-btn">Support Center</a>
+  </div>
+</section>
+
+<section class="container" id="contact">
+  <h2 class="section-title">Komentar</h2>
+  <form onsubmit="sendKomentar(event)">
+    <label>Nama</label>
+    <input type="text" id="nama" required>
+
+    <label>Rating</label>
+    <select id="rate" required>
+      <option value="">Pilih Rating</option>
+      <option value="1">1 - Buruk</option>
+      <option value="2">2 - Kurang</option>
+      <option value="3">3 - Lumayan</option>
+      <option value="4">4 - Bagus</option>
+      <option value="5">5 - Mantap!</option>
+    </select>
+
+    <label>Komentar</label>
+    <textarea id="komen" rows="4" required></textarea>
+
+    <button type="submit">Kirim</button>
+  </form>
+</section>
+
+<div id="toast" class="toast">Komentar dikirim!</div>
+
+<footer>
+  © 2025 LIVIAA Test Website — Dikembangkan oleh LIVIAA Project.
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("open");
+}
+
+/* Review stars */
+function changeRating(e){
+  let x = e.offsetX;
+  let width = e.target.clientWidth;
+  let percent = (x / width) * 100;
+  let bintang = Math.ceil(percent / 20);
+  if(bintang < 1) bintang = 1;
+  document.getElementById("ratingValue").textContent = bintang.toFixed(1);
+  document.getElementById("ratingFill").style.width = (bintang * 20) + "%";
+
+  loadComments(bintang);
+}
+
+function loadComments(rate){
+  const area = document.getElementById("comments");
+  area.innerHTML = "";
+  let list = {
+    1:["Kurang sesuai ekspektasi.","Response lambat.","Tidak direkomendasikan."],
+    2:["Masih ada kekurangan.","Lumayan tapi butuh perbaikan.","Tidak terlalu puas."],
+    3:["Cukup oke.","Fitur standar.","Harga sesuai kualitas."],
+    4:["Bagus dan cepat.","Pelayanan ramah.","Script berjalan lancar."],
+    5:["Mantap banget!","Admin fast respon.","Layanan terbaik!"]
+  };
+
+  list[rate].forEach((t,i)=>{
+    let div=document.createElement("div");
+    div.className="comment-item";
+    div.textContent=t;
+    area.appendChild(div);
+    setTimeout(()=>div.classList.add("show"),50*i);
+  });
+}
+
+/* komentar */
+function sendKomentar(e){
+  e.preventDefault();
+  document.getElementById("toast").classList.add("show");
+  setTimeout(()=>document.getElementById("toast").classList.remove("show"),2000);
+  e.target.reset();
+}
+</script>
+
+</body>
+</html>
